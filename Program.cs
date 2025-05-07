@@ -9,12 +9,14 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("\nDiary Menu:");
-            Console.WriteLine("1. Write a New Entry");
+            Console.Write("===========================================");
+            Console.WriteLine("\n               Diary Menu:");
+            Console.Write("===========================================");
+            Console.WriteLine("\n1. Write a New Entry");
             Console.WriteLine("2. View All Entries");
             Console.WriteLine("3. Search Entry by Date");
             Console.WriteLine("4. Exit");
-            Console.Write("Enter your choice: ");
+            Console.Write("\nEnter your choice: ");
 
             if (!int.TryParse(Console.ReadLine(), out choice))
             {
@@ -25,7 +27,10 @@ class Program
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("Enter your diary entry (end with an empty line):");
+                    Console.Write("\n===========================================");
+                    Console.WriteLine("\n            Write a New Entry");
+                    Console.Write("===========================================");
+                    Console.Write("\nEnter your diary entry (end with an empty line):");
                     string entry = "";
                     string line;
                     while (!string.IsNullOrEmpty(line = Console.ReadLine()))
@@ -40,6 +45,9 @@ class Program
                     break;
 
                 case 3:
+                    Console.Write("\n===========================================");
+                    Console.WriteLine("\n            Search Entry Date");
+                    Console.Write("===========================================\n");
                     Console.Write("Enter date to search (YYYY-MM-DD): ");
                     string date = Console.ReadLine();
                     diary.SearchByDate(date);
