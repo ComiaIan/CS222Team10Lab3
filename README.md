@@ -160,15 +160,17 @@ Press any key to continue...
 ===========================================
 (Enter 'CANCEL' to cancel the operation)
 -------------------------------------------
-Enter date (yyyy-MM-dd): 2025-05-08
+Enter date (yyyy-MM-dd): 2024-10-05
 
-1 entry successfully deleted dating 2025-05-08.
+No entries found for the specified date.
 
 
 ******************************
 
 
-Enter another date? (y/n): n    
+Enter another date? (y/n): n
+
+Press any key to continue...
 ```
 
 ```
