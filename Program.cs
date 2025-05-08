@@ -5,9 +5,10 @@ class Program
     public static void Main()
     {
         Diary diary = new Diary();
+        bool search;
 
         diary.EnsureFileExists();
-        
+
         while (true)
         {
             Console.Clear();
@@ -65,8 +66,6 @@ class Program
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("\nCannot save empty entry. Add content or type 'CANCEL'\n");
                                 Console.ResetColor();
-
-                                diary.Pause();
                                 continue;
                             }
                             break;
@@ -78,7 +77,7 @@ class Program
                         }
                     }
 
-                    if(add_entry)
+                    if (add_entry)
                     {
                         diary.WriteEntry(entry);
                         diary.Pause();
@@ -87,12 +86,17 @@ class Program
 
                 case "2":
                     Console.Clear();
+                    Console.Write("\n===========================================");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("\n               All Entries:");
+                    Console.ResetColor();
+                    Console.Write("===========================================\n");
                     diary.ViewAllEntries();
                     break;
 
                 case "3":
-                    bool search = true;
-                    
+                    search = true;
+
                     while (search)
                     {
                         Console.Clear();
@@ -116,49 +120,47 @@ class Program
                         }
 
                         diary.SearchByDate(dateInput);
-                        search = diary.SearchAgain(search);
+                        search = diary.EnterDateAgain(search);
                     }
                     break;
 
                 case "4":
-                    Console.Clear();
-                    Console.Write("\n===========================================");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\n            Delete Entry by Date");
-                    Console.ResetColor();
-                    Console.Write("===========================================\n");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("(Enter 'CANCEL' to cancel the operation)");
-                    Console.ResetColor();
-                    Console.WriteLine("-------------------------------------------");
-                    Console.Write("Enter date (yyyy-MM-dd): ");
-                    
-                    string? deleteDateInput = Console.ReadLine();
+                    search = true;
+                    while (search)
+                    {
+                        Console.Clear();
+                        Console.Write("\n===========================================");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\n           Delete Entry by Date");
+                        Console.ResetColor();
+                        Console.Write("===========================================\n");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("(Enter 'CANCEL' to cancel the operation)");
+                        Console.ResetColor();
+                        Console.WriteLine("-------------------------------------------");
+                        Console.Write("Enter date (yyyy-MM-dd): ");
 
-                    if (deleteDateInput?.ToUpper() == "CANCEL")
-                        break;
+                        string? deleteDateInput = Console.ReadLine();
 
-                    diary.DeleteEntry(deleteDateInput);
-                    diary.Pause();
+                        if (deleteDateInput?.ToUpper() == "CANCEL")
+                        {
+                            search = false;
+                            break;
+                        }
+
+                        diary.DeleteEntry(deleteDateInput);
+                        search = diary.EnterDateAgain(search);
+                    }
                     break;
 
                 case "5":
                     Console.Clear();
-                    Console.Write("\n===========================================");
+                    Console.Write("\n=====================================================");
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\n            Delete All Entries");
+                    Console.WriteLine("\n                 Delete All Entries");
                     Console.ResetColor();
-                    Console.Write("===========================================\n");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Are you sure you want to delete all entries? (Y/N)");
-                    Console.ResetColor();
-                    string? confirmDelete = Console.ReadLine();
-
-                    if (confirmDelete?.ToUpper() == "Y")
-                    {
-                        diary.ClearAllEntries();
-                        diary.Pause();
-                    }
+                    Console.Write("=====================================================\n");
+                    diary.ClearAllEntries();
                     break;
 
                 case "6":
