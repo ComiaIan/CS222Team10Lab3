@@ -61,11 +61,12 @@ class Program
                         }
                         else if (line?.ToUpper() == "END")
                         {
-                            if (line.Length == 3 && entry.Length == 0)
+                            if (line.Length == 3 && entry.Length == 0 || string.IsNullOrWhiteSpace(entry))
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("\nCannot save empty entry. Add content or type 'CANCEL'\n");
                                 Console.ResetColor();
+                                add_entry = false;
                                 continue;
                             }
                             break;
