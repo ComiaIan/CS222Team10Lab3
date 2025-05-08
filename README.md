@@ -19,6 +19,8 @@
 - Write new diary entries
 - View all saved entries
 - Search entries by date
+- Delete by date
+- Clear all entries
 
 Entries are stored in a local text file (`diary.txt`) using file handling techniques, ensuring that all data will be saved and can be used  across sessions. This project demonstrates a clean implementation of object-oriented programming (OOP) principles in C#.
 
@@ -27,8 +29,10 @@ Entries are stored in a local text file (`diary.txt`) using file handling techni
 - **Write Entries:** Add new entries with timestamped logs.
 - **View Entries:** Display all past entries saved in the diary.
 - **Search by Date:** Find specific entries using a YYYY-MM-DD formatted date.
+- **Delete by Date:** Remove diary entries for a given date.
+- **Clear All Entries:** Erase all saved entries in one command.
 - **File Persistence:** All data is stored in a text file using `StreamWriter` and `File.ReadAllText`.
-- **Error Handling.** Ensures basic error handling to manage invalid inputs and missing files.
+- **Error Handling.** Handles invalid inputs and provides user feedback.
 
 
 ## 🕹 OOP Principles Used
