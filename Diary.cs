@@ -152,7 +152,9 @@ public class Diary
 
             if (!found)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No entries found for the specified date.");
+                Console.ResetColor();
             }
             else
             {
