@@ -3,11 +3,26 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-public class Diary
+abstract class Diary
+{
+    public abstract void EnsureFileExists();
+    public abstract void WriteEntry(string text);
+    public abstract void ViewAllEntries();
+    public abstract void SearchByDate(string date);
+    public abstract void DeleteEntry(string targetDate);
+    public abstract void ClearAllEntries();
+    public abstract bool EnterDateAgain(bool search);
+    public abstract bool IsValidDate(string date);
+    public abstract void PrintDateInvalid();
+    public abstract void Pause();
+
+
+}
+class Entry : Diary
 {
     private readonly string filePath = "diary.txt";
 
-    public void EnsureFileExists()
+    public override void EnsureFileExists()
     {
         if (!File.Exists(filePath))
         {
@@ -15,7 +30,7 @@ public class Diary
         }
     }
 
-    public void WriteEntry(string text)
+    public override void WriteEntry(string text)
     {
         try
         {
@@ -39,7 +54,7 @@ public class Diary
         }
     }
 
-    public void ViewAllEntries()
+    public override void ViewAllEntries()
     {
         try
         {
@@ -87,7 +102,7 @@ public class Diary
         Pause();
     }
 
-    public void SearchByDate(string date)
+    public override void SearchByDate(string date)
     {
         try
         {
@@ -169,7 +184,7 @@ public class Diary
         }
     }
 
-    public void DeleteEntry(string targetDate)
+    public override void DeleteEntry(string targetDate)
     {
         if (!IsValidDate(targetDate))
         {
@@ -181,7 +196,7 @@ public class Diary
         {
             string[] lines = File.ReadAllLines(filePath);
             List<string> updatedLines = new List<string>();
-            
+
             bool tobeDeleted = false;
             string currentDate = "";
             int deletedCount = 0;
@@ -237,7 +252,7 @@ public class Diary
         }
     }
 
-    public void ClearAllEntries()
+    public override void ClearAllEntries()
     {
         while (true)
         {
@@ -283,7 +298,7 @@ public class Diary
             }
         }
     }
-    public bool EnterDateAgain(bool search) // for search asking use if the user wants to search again in search by date
+    public override bool EnterDateAgain(bool search) // for search asking use if the user wants to search again in search by date
     {
         bool again = true;
 
@@ -317,7 +332,7 @@ public class Diary
         return search;
     }
 
-    private bool IsValidDate(string date)
+    public override bool IsValidDate(string date)
     {
         if (string.IsNullOrWhiteSpace(date) || date.Length != 10)
             return false;
@@ -325,7 +340,7 @@ public class Diary
         return DateTime.TryParseExact(date, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out _);
     }
 
-    public void PrintDateInvalid()
+    public override void PrintDateInvalid()
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\nInvalid date format. Please use yyyy-MM-dd.");
@@ -333,7 +348,7 @@ public class Diary
         return;
     }
 
-    public void Pause()
+    public override void Pause()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("\nPress any key to continue...");
