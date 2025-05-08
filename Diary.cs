@@ -242,7 +242,7 @@ public class Diary
         while (true)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Are you sure you want to delete all entries? (Y/N): ");
+            Console.Write("Are you sure you want to delete all entries? (y/n): ");
             Console.ResetColor();
             string? confirmDelete = Console.ReadLine();
 
