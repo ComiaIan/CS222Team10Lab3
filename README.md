@@ -197,7 +197,7 @@ Press any key to continue...
 ```
 [Exiting Diary. Goodbye!]
 ```
-## 👥Team Members
+## 👥 Team Members
 
 - Alcaraz John  
 - Bulanadi Sophia Loureine  
