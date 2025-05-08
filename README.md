@@ -69,49 +69,109 @@ Diary/
 ## 🖼 Sample Output
 
 ```
-Diary Menu:
+===========================================
+               DIARY MENU
+===========================================
 1. Write a New Entry
 2. View All Entries
 3. Search Entry by Date
-4. Exit
+4. Delete Entry by Date
+5. Delete All Entries
+6. Exit
+
 Enter your choice: 1
-Enter your diary entry (end with an empty line):
-Learning C#is fun, I hope I'll learn more~
 
-Entry saved.
+========================================================
+                   Write a New Entry
+========================================================
+Enter your diary entry (multiple lines allowed)
+Type 'END' on a new line to finish, or 'CANCEL' to abort
+--------------------------------------------------------
+Today was a productive day.
+I worked on several programming tasks and completed them on time.
+Had a good cup of coffee too!
+END
 
-Diary Menu:
-1. Write a New Entry
-2. View All Entries
-3. Search Entry by Date
-4. Exit
-Enter your choice: 2
+Entry added successfully.
 
-All Entries:
-
-Date: 2025-05-01 15:00:00
-Learning C# is fun, I hope I'll learn more~
----
-
-Diary Menu:
-1. Write a New Entry
-2. View All Entries
-3. Search Entry by Date
-4. Exit
-Enter your choice: 3
-Enter date to search (YYYY-MM-DD): 2025-05-01
-
-Date: 2025-05-01 15:00:00
-Learning C# is fun, I hope I'll learn more~
-
-Diary Menu:
-1. Write a New Entry
-2. View All Entries
-3. Search Entry by Date
-4. Exit
-Enter your choice: 4
+Press any key to continue...
 ```
 
+```
+===========================================
+               DIARY MENU
+===========================================
+1. Write a New Entry
+2. View All Entries
+3. Search Entry by Date
+4. Delete Entry by Date
+5. Delete All Entries
+6. Exit
+
+Enter your choice: 2
+
+===========================================
+               All Entries:
+===========================================
+
+Entry #1:
+  Date: 2025-05-08
+    Today was a productive day.
+    I worked on several programming tasks and completed them on time.
+    Had a good cup of coffee too!
+
+Press any key to continue...
+```
+
+```
+===========================================
+            Search Entry by Date
+===========================================
+(Enter 'CANCEL' to cancel the operation)
+-------------------------------------------
+Enter date (yyyy-MM-dd): 2025-05-08
+
+Search Results for 2025-05-08:
+--------------------------
+
+Entry #1 - 2025-05-08
+    Today was a productive day.
+    I worked on several programming tasks and completed them on time.
+    Had a good cup of coffee too!
+
+Found 1 entries matching 2025-05-08
+
+Search another date? (y/n): n
+
+Press any key to continue...
+```
+
+```
+===========================================
+            Delete Entry by Date
+===========================================
+(Enter 'CANCEL' to cancel the operation)
+-------------------------------------------
+Enter date (yyyy-MM-dd): 2025-05-08
+Entry deleted.
+
+Press any key to continue...
+```
+
+```
+===========================================
+            Delete All Entries
+===========================================
+Are you sure you want to delete all entries? (Y/N)
+Y
+All entries cleared.
+
+Press any key to continue...
+```
+
+```
+[Exiting Diary. Goodbye!]
+```
 ## 👥Team Members
 
 - Alcaraz John  
