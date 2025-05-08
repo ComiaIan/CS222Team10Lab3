@@ -119,10 +119,16 @@ Enter your choice: 2
 ===========================================
 
 Entry #1:
-  Date: 2025-05-08 14:35:46
+  Date: 2025-05-07 10:51:24
         Today was a productive day.
         I worked on several programming tasks and completed them on time.
         Had a good cup of coffee too!
+
+******************************
+
+Entry #2:
+  Date: 2025-05-08 14:35:46
+        My favorite shoes got muddy today because it rained hard early this morning.
 
 Press any key to continue...
 ```
@@ -133,17 +139,17 @@ Press any key to continue...
 ===========================================
 (Enter 'CANCEL' to cancel the operation)
 -------------------------------------------
-Enter date (yyyy-MM-dd): 2025-05-08
+Enter date (yyyy-MM-dd): 2025-05-07
 
-Search Results for 2025-05-08:
+Search Results for 2025-05-07:
 ------------------------------
 
-Entry #1 - 2025-05-08
+Entry #1 - 2025-05-07
         Today was a productive day.
         I worked on several programming tasks and completed them on time.
         Had a good cup of coffee too!
 
-Found 1 entries matching 2025-05-08
+Found 1 entries matching 2025-05-07
 
 
 ******************************
@@ -160,9 +166,9 @@ Press any key to continue...
 ===========================================
 (Enter 'CANCEL' to cancel the operation)
 -------------------------------------------
-Enter date (yyyy-MM-dd): 2024-10-05
+Enter date (yyyy-MM-dd): 2025-05-07
 
-No entries found for the specified date.
+1 entry successfully deleted dating 2025-05-07.
 
 
 ******************************
