@@ -119,10 +119,10 @@ Enter your choice: 2
 ===========================================
 
 Entry #1:
-  Date: 2025-05-08
-    Today was a productive day.
-    I worked on several programming tasks and completed them on time.
-    Had a good cup of coffee too!
+  Date: 2025-05-08 14:35:46
+        Today was a productive day.
+        I worked on several programming tasks and completed them on time.
+        Had a good cup of coffee too!
 
 Press any key to continue...
 ```
@@ -136,16 +136,20 @@ Press any key to continue...
 Enter date (yyyy-MM-dd): 2025-05-08
 
 Search Results for 2025-05-08:
---------------------------
+------------------------------
 
 Entry #1 - 2025-05-08
-    Today was a productive day.
-    I worked on several programming tasks and completed them on time.
-    Had a good cup of coffee too!
+        Today was a productive day.
+        I worked on several programming tasks and completed them on time.
+        Had a good cup of coffee too!
 
 Found 1 entries matching 2025-05-08
 
-Search another date? (y/n): n
+
+******************************
+
+
+Enter another date? (y/n): n
 
 Press any key to continue...
 ```
@@ -157,17 +161,26 @@ Press any key to continue...
 (Enter 'CANCEL' to cancel the operation)
 -------------------------------------------
 Enter date (yyyy-MM-dd): 2025-05-08
-Entry deleted.
 
-Press any key to continue...
+1 entry successfully deleted dating 2025-05-08.
+
+
+******************************
+
+
+Enter another date? (y/n): n    
 ```
 
 ```
-===========================================
-            Delete All Entries
-===========================================
-Are you sure you want to delete all entries? (Y/N)
-Y
+=====================================================
+                 Delete All Entries
+=====================================================
+Are you sure you want to delete all entries? (Y/N): y
+
+
+******************************
+
+
 All entries cleared.
 
 Press any key to continue...
