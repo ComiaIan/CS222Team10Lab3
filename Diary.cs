@@ -78,7 +78,6 @@ public class Diary
         }
     }
 
-}
     public void DeleteEntry(string date)
     {
         if (!File.Exists(filePath))
