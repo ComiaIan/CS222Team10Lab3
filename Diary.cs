@@ -60,4 +60,48 @@ public class Diary
             }
         }
     }
+
+    public void DeleteEntry(string date)
+    {
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("No diary entries found.");
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(filePath);
+        using (StreamWriter writer = new StreamWriter(filePath, false))
+        {
+            bool skipEntry = false;
+            foreach (string line in lines)
+            {
+                if (line.StartsWith("Date: ") && line.Contains(date))
+                {
+                    skipEntry = true; // Skip this entry
+                }
+                else if (line == "---")
+                {
+                    skipEntry = false; // Reset for next entry
+                }
+
+                if (!skipEntry)
+                {
+                    writer.WriteLine(line);
+                }
+            }
+        }
+        Console.WriteLine("Entry deleted.");
+    }
+    public void ClearAllEntries()
+    {
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+            Console.WriteLine("All entries cleared.");
+        }
+        else
+        {
+            Console.WriteLine("No diary entries found.");
+        }
+    }
 }
