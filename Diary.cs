@@ -1,5 +1,3 @@
-//diary.cs
-
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -43,23 +41,18 @@ public class Diary
 
     public void ViewAllEntries()
     {
-        Console.Clear();
         try
         {
             if (new FileInfo(filePath).Length == 0)
             {
+                Console.WriteLine("\n\n******************************\n");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n\n\nNo entries found.");
+                Console.WriteLine("\nNo diary entries found.");
                 Console.ResetColor();
                 Pause();
                 return;
             }
 
-            Console.Write("\n===========================================");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\n               All Entries:");
-            Console.ResetColor();
-            Console.Write("===========================================\n");
             using (StreamReader reader = new StreamReader(filePath))
             {
                 int entryNumber = 1;
@@ -69,11 +62,11 @@ public class Diary
                 {
                     if (line.Contains("BEGIN ENTRY"))
                     {
-                        if(entryNumber != 1)
+                        if (entryNumber != 1)
                         {
                             Console.WriteLine("\n******************************");
                         }
-                        
+
                         Console.WriteLine($"\nEntry #{entryNumber++}:");
                         string date = line.Split('|')[0].Trim();
                         Console.WriteLine($"  Date: {date}");
@@ -83,7 +76,7 @@ public class Diary
                         Console.WriteLine("\t" + line);
                     }
                 }
-            } 
+            }
         }
         catch (Exception ex)
         {
@@ -100,10 +93,7 @@ public class Diary
         {
             if (!IsValidDate(date))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nInvalid date format. Please use yyyy-MM-dd.");
-                Console.ResetColor();
-                Pause();
+                PrintDateInvalid();
                 return;
             }
 
@@ -117,8 +107,10 @@ public class Diary
                 bool isMatchingEntry = false;
                 string currentDate = "";
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\nSearch Results for {date}:");
-                Console.WriteLine("--------------------------");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------");
 
                 string? line;
 
@@ -142,7 +134,7 @@ public class Diary
                             {
                                 Console.WriteLine();
                             }
-                                matchedEntryCounter++;
+                            matchedEntryCounter++;
                             Console.WriteLine($"Entry #{entryCounter} - {currentDate}");
                         }
                     }
@@ -175,30 +167,146 @@ public class Diary
             Console.WriteLine($"[Error searching entries: {ex.Message}]\n");
             Console.ResetColor();
         }
-        Pause();
     }
 
-    public bool SearchAgain(bool search)
+    public void DeleteEntry(string targetDate)
+    {
+        if (!IsValidDate(targetDate))
+        {
+            PrintDateInvalid();
+            return;
+        }
+
+        try
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            List<string> updatedLines = new List<string>();
+            
+            bool tobeDeleted = false;
+            string currentDate = "";
+            int deletedCount = 0;
+
+            foreach (string line in lines)
+            {
+                if (line.Contains("BEGIN ENTRY"))
+                {
+                    currentDate = line.Split('|')[0].Trim();
+                    tobeDeleted = currentDate.StartsWith(targetDate);
+                    if (tobeDeleted)
+                        deletedCount++;
+                }
+
+                if (!tobeDeleted)
+                {
+                    updatedLines.Add(line);
+                }
+
+                if (line.Contains("END ENTRY"))
+                {
+                    tobeDeleted = false;
+                }
+            }
+
+            if (deletedCount == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\nNo entries found for the specified date.");
+                Console.ResetColor();
+            }
+            else
+            {
+                if (updatedLines.Count == 1)
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                    }
+                }
+                else
+                {
+                    File.WriteAllLines(filePath, updatedLines);
+                }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{deletedCount} entr{(deletedCount == 1 ? "y" : "ies")} successfully deleted dating {targetDate}.");
+                Console.ResetColor();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"[Error deleting entries: {ex.Message}]\n");
+            Console.ResetColor();
+        }
+    }
+
+    public void ClearAllEntries()
+    {
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Are you sure you want to delete all entries? (Y/N): ");
+            Console.ResetColor();
+            string? confirmDelete = Console.ReadLine();
+
+            if (confirmDelete?.ToUpper() == "Y")
+            {
+                Console.WriteLine("\n\n******************************\n");
+
+                if (new FileInfo(filePath).Length == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nNo diary entries found.");
+                    Console.ResetColor();
+                    Pause();
+                    return;
+                }
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nAll entries cleared.");
+                        Console.ResetColor();
+                        Pause();
+                        return;
+                    }
+                }
+            }
+            else if (confirmDelete?.ToUpper() == "N")
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid input. Please enter 'y' or 'n'.\n");
+                Console.ResetColor();
+            }
+        }
+    }
+    public bool EnterDateAgain(bool search) // for search asking use if the user wants to search again in search by date
     {
         bool again = true;
 
         while (again)
         {
+            Console.WriteLine("\n\n******************************\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("\nSearch another date? (y/n): ");
+            Console.Write("\nEnter another date? (y/n): ");
             Console.ResetColor();
             string? choice2 = Console.ReadLine()?.ToLower();
-            if (choice2 == "y")
+            if (choice2?.ToUpper() == "Y")
             {
                 search = true;
                 again = false;
             }
-            else if (choice2 == "n")
+            else if (choice2?.ToUpper() == "N")
             {
                 again = false;
                 search = false;
             }
-            else if (choice2 != "n" || choice2 == "n")
+            else
             {
                 again = true;
                 Console.WriteLine();
@@ -207,9 +315,9 @@ public class Diary
                 Console.ResetColor();
             }
         }
+        Pause();
         return search;
     }
-
 
     private bool IsValidDate(string date)
     {
@@ -219,55 +327,19 @@ public class Diary
         return DateTime.TryParseExact(date, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out _);
     }
 
+    public void PrintDateInvalid()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\nInvalid date format. Please use yyyy-MM-dd.");
+        Console.ResetColor();
+        return;
+    }
+
     public void Pause()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("\nPress any key to continue...");
         Console.ResetColor();
         Console.ReadKey();
-    }
-
-    public void DeleteEntry(string date)
-    {
-        if (!File.Exists(filePath))
-        {
-            Console.WriteLine("No diary entries found.");
-            return;
-        }
-
-        string[] lines = File.ReadAllLines(filePath);
-        using (StreamWriter writer = new StreamWriter(filePath, false))
-        {
-            bool skipEntry = false;
-            foreach (string line in lines)
-            {
-                if (line.StartsWith("Date: ") && line.Contains(date))
-                {
-                    skipEntry = true; // Skip this entry
-                }
-                else if (line == "---")
-                {
-                    skipEntry = false; // Reset for next entry
-                }
-
-                if (!skipEntry)
-                {
-                    writer.WriteLine(line);
-                }
-            }
-        }
-        Console.WriteLine("Entry deleted.");
-    }
-    public void ClearAllEntries()
-    {
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-            Console.WriteLine("All entries cleared.");
-        }
-        else
-        {
-            Console.WriteLine("No diary entries found.");
-        }
     }
 }
