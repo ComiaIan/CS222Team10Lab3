@@ -1,10 +1,11 @@
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 class Program
 {
     public static void Main()
     {
-        Diary diary = new Diary();
+        Diary diary = new Entry();
         bool search;
 
         diary.EnsureFileExists();
@@ -61,7 +62,7 @@ class Program
                         }
                         else if (line?.ToUpper() == "END")
                         {
-                            if (line.Length == 3 && entry.Length == 0 || string.IsNullOrWhiteSpace(entry))
+                            if ((line.Length == 3 && entry.Length == 0) || string.IsNullOrWhiteSpace(entry))
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("\nCannot save empty entry. Add content or type 'CANCEL'\n");
