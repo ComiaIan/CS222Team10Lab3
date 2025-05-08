@@ -39,8 +39,7 @@ Entries are stored in a local text file (`diary.txt`) using file handling techni
 
 - **Encapsulation:** The Diary class encapsulates the filePath field and related operations (WriteEntry, ViewAllEntries, and SearchByDate) to manage diary entries. The filePath is marked as private readonly, which hides it from external classes and prevents modification, protecting the integrity of the data.
 
-- **Abstraction:** The Diary class provides simple public methods to write, view, and search entries without exposing how those operations interact with the file system. The user of the class doesn’t need to understand file handling to use the diary functionality.
-
+- **Abstraction:** The Diary class used Abstract classes to define a general template or blueprint for a set of related classes, promoting code reuse and organization.
 
 - **Modularity:** Functionality is separated into `Diary.cs` for logic and `Program.cs` for user interaction and flow. The Diary class is a self-contained module for diary management. The Program class is responsible for user interaction and control flow, keeping concerns separate from diary logic.
 
