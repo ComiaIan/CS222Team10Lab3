@@ -41,9 +41,6 @@ Entries are stored in a local text file (`diary.txt`) using file handling techni
 
 - **Abstraction:** The Diary class used Abstract classes to define a general template or blueprint for a set of related classes, promoting code reuse and organization.
 
-- **Modularity:** Functionality is separated into `Diary.cs` for logic and `Program.cs` for user interaction and flow. The Diary class is a self-contained module for diary management. The Program class is responsible for user interaction and control flow, keeping concerns separate from diary logic.
-
-
 ## 📄 How to Run the Application
 
 1. Open the project in **Visual Studio** or any C#-compatible IDE.
@@ -205,5 +202,5 @@ Press any key to continue...
 
 ## 📃 Acknowledgement
 
-Special thanks to our Advance Object-Oriented Programming Ms. Marie Agdon for guiding us in understanding the C# language and object-oriented programming concepts. We would also like to give our gratitude to all of our supportive classmates and parents that motivate us in making this project come into  a success. They all helped us push further and be able to apply our learning in  real-world scenarios.
+Special thanks to our Advance Object-Oriented Programming Ms. Fatima Marie Agdon for guiding us in understanding the C# language and object-oriented programming concepts. We would also like to give our gratitude to all of our supportive classmates and parents that motivate us in making this project come into  a success. They all helped us push further and be able to apply our learning in  real-world scenarios.
 
