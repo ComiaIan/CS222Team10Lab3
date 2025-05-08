@@ -183,7 +183,7 @@ Press any key to continue...
 =====================================================
                  Delete All Entries
 =====================================================
-Are you sure you want to delete all entries? (Y/N): y
+Are you sure you want to delete all entries? (y/n): y
 
 
 ******************************
